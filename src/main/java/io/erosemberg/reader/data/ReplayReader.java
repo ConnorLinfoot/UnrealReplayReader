@@ -41,7 +41,8 @@ public class ReplayReader<T extends GameData> {
         ReplayInfo.ReplayInfoBuilder builder = ReplayInfo.builder();
 
         ReplayHeader header = ReplayHeader.readHeader(this.reader);
-        System.out.println("Finished reading header");
+        if (options.isDebug())
+            System.out.println("Finished reading header");
         builder.header(header);
 
         int totalSize = reader.available();
@@ -58,7 +59,8 @@ public class ReplayReader<T extends GameData> {
 
         Set<String> players = new HashSet<>();
 
-        System.out.println("Beginning to read all the chunks! (" + reader.available() + ").");
+        if (options.isDebug())
+            System.out.println("Beginning to read all the chunks! (" + reader.available() + ").");
         while (reader.available() > 0) {
             // ttps://github.com/EpicGames/UnrealEngine/blob/master/Engine/Source/Runtime/NetworkReplayStreaming/LocalFileNetworkReplayStreaming/Private/LocalFileNetworkReplayStreaming.cpp#L243
             long typeOffset = reader.getOffset(); // Same as FArchive.Tell()
@@ -136,7 +138,8 @@ public class ReplayReader<T extends GameData> {
                     break;
                 }
                 case UNKNOWN:
-                    System.out.println("Encountered unknown type.");
+                    if (options.isDebug())
+                        System.out.println("Encountered unknown type.");
                     break;
             }
 
