@@ -67,7 +67,7 @@
         <dependency>
             <groupId>com.github.hugmanrique</groupId>
             <artifactId>Jacobin</artifactId>
-            <version>master-SNAPSHOT</version>
+            <version>utf-write-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
